@@ -3,85 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flower Identifier</title>
+  <title>FlowerSnap</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <div class="navbar-box">
       <nav>
-        <div class="logo">namaweb</div>
+        <img src="/assets/LogoFlowerSnap.png"class="logo"></img>
+        <!-- 
         <div class="nav-links">
           <a href="#">Home</a>
           <a href="#">Detect</a>
           <a href="#">About</a>
-        </div>
+        </div> -->
       </nav>
     </div>
   </header>
 
-  <main style="text-align: center; padding: 3rem;">
-    <h2>Upload a Flower Photo</h2>
-    <input type="file" id="imageInput" accept="image/*" />
-    <br><br>
-    <img id="preview" src="#" alt="Image Preview" style="max-width: 300px; display: none; border-radius: 8px;" />
-    <br><br>
-    <button onclick="handleUpload()">Upload</button>
+<main class="upload-section">
+  <div class="left-panel">
+    <img src="/assets/plawer.png" alt="Flower" class="flower-image" /> 
+    <h2>Identify your<br>flower instantly!</h2>
+    
+  </div>
+
+  <div class="right-panel">
+    <div class="upload-box">
+      <label for="imageInput" class="upload-label">
+        <img src="https://cdn-icons-png.flaticon.com/512/1829/1829586.png" alt="Upload Icon" class="upload-icon">
+        <div class="upload-button">Upload Image</div>
+        <div class="upload-hint">or drop a file</div>
+      </label>
+      <input type="file" id="imageInput" accept="image/*" hidden />
+    </div>
+
+    <img id="preview" src="assets/picture.png" alt="Image Preview"class="upload-icon"/>
+    <div class="upload-button-wrapper">
+      <button class="upload-button" onclick="uploadImage()">Upload</button>
+    </div>
     <p id="upload-status"></p>
     <div id="result"></div>
-  </main>
+  </div>
+</main>
 
-  <script>
-    const imageInput = document.getElementById("imageInput");
-    const preview = document.getElementById("preview");
-    const resultDiv = document.getElementById("result");
+<div id="result" class="result-box" style="display: none; margin-top: 20px;">
+  <h3>Hasil Identifikasi</h3>
+  <p><strong>Nama Bunga:</strong> <span id="flower-name"></span></p>
+  <p><strong>Makna:</strong> <span id="flower-meaning"></span></p>
+</div>
 
-    imageInput.onchange = () => {
-      const file = imageInput.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          preview.src = reader.result;
-          preview.style.display = "block";
-        };
-        reader.readAsDataURL(file);
-      }
-    };
 
-    async function handleUpload() {
-      const file = imageInput.files[0];
-      const status = document.getElementById("upload-status");
-      resultDiv.innerHTML = "";
-      if (!file) {
-        status.innerText = "Please select an image first.";
-        status.style.color = "red";
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("file", file);
-      status.innerText = "Analyzing...";
-      status.style.color = "black";
-
-      try {
-        const response = await fetch("/predict", {
-          method: "POST",
-          body: formData
-        });
-        const data = await response.json();
-        if (data.error) {
-          status.innerText = "Error: " + data.error;
-          status.style.color = "red";
-        } else {
-          resultDiv.innerHTML = `<strong>Flower:</strong> ${data.flower}<br><strong>Meaning:</strong> ${data.meaning}`;
-          status.innerText = "Success!";
-          status.style.color = "green";
-        }
-      } catch (err) {
-        status.innerText = "Failed to upload.";
-        status.style.color = "red";
-      }
-    }
-  </script>
+  <script src="app.js></script>
 </body>
 </html>

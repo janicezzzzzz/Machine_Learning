@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
@@ -33,6 +34,7 @@ nav {
   font-size: 1.8rem;
   font-weight: bold;
   color: #333;
+  width: 10%;
 }
 
 .nav-links {
@@ -60,7 +62,7 @@ nav {
   padding: 2rem;
   margin: 2rem;
   color: white;
-}
+} 
 
 .hero {
   text-align: center;
@@ -78,6 +80,186 @@ nav {
   max-width: 600px;
   margin: 0 auto;
 }
+
+/*  upload  */
+input[type="file"] {
+  margin-top: 1rem;
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
+main {
+  background-color: #ffffff;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+ 
+}
+
+main h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #2f4f4f;
+}
+
+.upload-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  gap: 3rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 45px  auto;
+}
+
+.left-panel,
+.right-panel {
+  flex: 1 1 400px;
+  max-width: 500px;
+}
+
+.left-panel h2 {
+  font-size: 2.8rem;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  margin left: 1.2 rem;
+  color: #333;
+}
+
+.flower-image {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 12px;
+
+  /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
+}
+
+.upload-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border: 2px dashed #f4a7bb;
+  padding: 10rem 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  border-radius: 16px;
+  min-height: 250px;
+}
+
+.upload-label:hover {
+  background-color: #fff5f7;
+}
+
+#preview {
+  width: 50px;
+  height: 50px;
+  max-width: 100%
+  max-height: auto;
+  opacity: 0.6;
+  margin-top: 10px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+
+#upload-status {
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+#result {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.upload-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.upload-button {
+  background-color: #f28cb1; /* pink background */
+  border: 2px solid #f4a7bb;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 10px rgba(242, 140, 177, 0.2);
+}
+
+.upload-button:hover {
+  background-color: #e4789e;
+  box-shadow: 0 4px 14px rgba(242, 140, 177, 0.3);
+}
+
+.upload-hint {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.upload-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+
+.upload-button2 {
+  background-color: #f077a3;
+  color: white;
+  padding: 0.6rem 1.4rem  ;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 10px rgba(242, 140, 177, 0.2);
+  margin-top: 1rem;
+}
+
+.upload-button2:hover {
+  background-color: #c05d80;
+  box-shadow: 0 4px 14px rgba(242, 140, 177, 0.3);
+}
+
+
+/*----*/
+
+.result-box {
+  padding: 20px;
+  border: 2px dashed pink;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff0f5;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
 
 .abt {
   display: flex;
