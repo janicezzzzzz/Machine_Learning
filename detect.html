@@ -3,24 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>namaweb</title>
-  <link rel="stylesheet" href="/MachineLearning/Machine_Learning/style.css" />
-  <link rel="icon" type="image/png" href="images/logo.png" />
+  <title>Flower Identifier</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-        <div class="navbar-box">
-            <nav>
-                <div class="logo">namaweb</div>
-                <div class="nav-links">
-                <a href="/MachineLearning/Machine_Learning/home.html">Home</a>
-                <a href="/MachineLearning/Machine_Learning/detect.html">Detect</a>
-                <a href="/MachineLearning/Machine_Learning/about.html">About</a>
-                </div>
-            </nav>
-            </div>
-    </header> 
-  </body>
-  
+    <div class="navbar-box">
+      <nav>
+        <div class="logo">namaweb</div>
+        <div class="nav-links">
+          <a href="#">Home</a>
+          <a href="#">Detect</a>
+          <a href="#">About</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main style="text-align: center; padding: 3rem;">
+    <h2>Upload a Flower Photo</h2>
+    <input type="file" id="imageInput" accept="image/*" />
+    <br><br>
+    <img id="preview" src="#" alt="Image Preview" style="max-width: 300px; display: none; border-radius: 8px;" />
+    <br><br>
+    <button onclick="handleUpload()">Upload</button>
+    <p id="upload-status"></p>
+    <div id="result"></div>
+  </main>
+
+  <script>
+    const imageInput = document.getElementById("imageInput");
+    const preview = document.getElementById("preview");
+    const resultDiv = document.getElementById("result");
+
+    imageInput.onchange = () => {
+      const file = imageInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          preview.src = reader.result;
+          preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    async function handleUpload() {
+      const file = imageInput.files[0];
+      const status = document.getElementById("upload-status");
+      resultDiv.innerHTML = "";
+      if (!file) {
+        status.innerText = "Please select an image first.";
+        status.style.color = "red";
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("file", file);
+      status.innerText = "Analyzing...";
+      status.style.color = "black";
+
+      try {
+        const response = await fetch("/predict", {
+          method: "POST",
+          body: formData
+        });
+        const data = await response.json();
+        if (data.error) {
+          status.innerText = "Error: " + data.error;
+          status.style.color = "red";
+        } else {
+          resultDiv.innerHTML = `<strong>Flower:</strong> ${data.flower}<br><strong>Meaning:</strong> ${data.meaning}`;
+          status.innerText = "Success!";
+          status.style.color = "green";
+        }
+      } catch (err) {
+        status.innerText = "Failed to upload.";
+        status.style.color = "red";
+      }
+    }
+  </script>
 </body>
 </html>
